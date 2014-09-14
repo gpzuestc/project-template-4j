@@ -29,12 +29,6 @@
 			<PatternLayout pattern="${logPattern}" />
 			<TimeBasedTriggeringPolicy />
 		</RollingFile>
-		<Async name="asyncStdoutFile">
-   			<AppenderRef ref="stdoutFile"/>
-   		</Async>
-		<Async name="asyncStderrFile" includeLocation="true">
-   			<AppenderRef ref="stderrFile"/>
-   		</Async>
 		
 		<RollingFile name="stderrFile" fileName="logs/stderr.log" filePattern="logs/stderr-%d{MM-dd-yyyy}.log.gz">
 			<ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -42,6 +36,13 @@
 			<TimeBasedTriggeringPolicy />
 		</RollingFile>
 
+		<Async name="asyncStdoutFile">
+   			<AppenderRef ref="stdoutFile"/>
+   		</Async>
+   		
+		<Async name="asyncStderrFile" includeLocation="true">
+   			<AppenderRef ref="stderrFile"/>
+   		</Async>
 	</Appenders>
 
 	<Loggers>
