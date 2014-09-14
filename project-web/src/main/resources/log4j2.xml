@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!-- set system property
+-DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+     to make all loggers asynchronous. -->
+     
+<!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
+ 
+<!-- logging with location is 4 - 20 times slower than without location. For this reason, 
+ 	asynchronous loggers and asynchronous appenders do not include location information by default.
+ 	You can change this by setting includeLocation="true". -->
+ 	
 <Configuration status="INFO">
 	<Properties>
 		<Property name="logPattern">[%d{yyyy-MM-dd HH:mm:ss}] [%t] [%level] %logger.%M(%L) - %msg%n</Property>
@@ -14,13 +24,19 @@
 			<ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY" />
 		</Console>
 
-		<RollingFile name="stdout_file" fileName="logs/stdout.log" filePattern="logs/stdout-%d{MM-dd-yyyy}.log.gz">
+		<RollingFile name="stdoutFile" fileName="logs/stdout.log" filePattern="logs/stdout-%d{MM-dd-yyyy}.log.gz">
 			<!-- <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="ACCEPT"/> -->
 			<PatternLayout pattern="${logPattern}" />
 			<TimeBasedTriggeringPolicy />
 		</RollingFile>
+		<Async name="asyncStdoutFile">
+   			<AppenderRef ref="stdoutFile"/>
+   		</Async>
+		<Async name="asyncStderrFile" includeLocation="true">
+   			<AppenderRef ref="stderrFile"/>
+   		</Async>
 		
-		<RollingFile name="stderr_file" fileName="logs/stderr.log" filePattern="logs/stderr-%d{MM-dd-yyyy}.log.gz">
+		<RollingFile name="stderrFile" fileName="logs/stderr.log" filePattern="logs/stderr-%d{MM-dd-yyyy}.log.gz">
 			<ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
 			<PatternLayout pattern="${logPattern}" />
 			<TimeBasedTriggeringPolicy />
@@ -40,8 +56,10 @@
 		<Root level="debug">
 			<AppenderRef ref="stdout" />
 			<AppenderRef ref="stderr" />
-			<AppenderRef ref="stdout_file" />
-			<AppenderRef ref="stderr_file" />
+<!-- 			<AppenderRef ref="stdoutFile" /> -->
+<!-- 			<AppenderRef ref="stderrFile" /> -->
+			<AppenderRef ref="asyncStdoutFile" />
+			<AppenderRef ref="asyncStderrFile" />
 		</Root>
 	</Loggers>
 </Configuration>
