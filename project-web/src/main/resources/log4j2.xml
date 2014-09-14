@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Configuration status="INFO">
-  <Appenders>
-    <Console name="Console" target="SYSTEM_OUT">
-      <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}] [%t] [%level] %logger{36} - %msg%n"/>
-    </Console>
-  </Appenders>
-  
-  <Loggers>
-  	<Logger name="org.springframwork" level="info">
-  		 <AppenderRef ref="Console"/>
-  	</Logger>
-  	<Logger name="net.dumbee" level="info" additivity="false">
-  		 <AppenderRef ref="Console"/>
-  	</Logger>
-    <Root level="debug">
-      <AppenderRef ref="Console"/>
-    </Root>
-  </Loggers>
+	<Properties>
+		<Property name="logPattern">[%d{yyyy-MM-dd HH:mm:ss}] [%t] [%level] %logger.%M(%L) - %msg%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="stdout" target="SYSTEM_OUT">
+			<PatternLayout pattern="${logPattern}" />
+<!-- 			<ThresholdFilter level="WARN" onMatch="DENY" onMismatch="ACCEPT" /> -->
+		</Console>
+
+		<Console name="stderr" target="SYSTEM_ERR">
+			<PatternLayout pattern="${logPattern}" />
+			<ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY" />
+		</Console>
+
+		<RollingFile name="stdout_file" fileName="logs/stdout.log" filePattern="logs/stdout-%d{MM-dd-yyyy}.log.gz">
+			<!-- <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="ACCEPT"/> -->
+			<PatternLayout pattern="${logPattern}" />
+			<TimeBasedTriggeringPolicy />
+		</RollingFile>
+		
+		<RollingFile name="stderr_file" fileName="logs/stderr.log" filePattern="logs/stderr-%d{MM-dd-yyyy}.log.gz">
+			<ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="${logPattern}" />
+			<TimeBasedTriggeringPolicy />
+		</RollingFile>
+
+	</Appenders>
+
+	<Loggers>
+		<!-- <Logger name="org.springframework" level="warn" additivity="false"> -->
+		<!-- <AppenderRef ref="stdout"/> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="net.dumbee" level="warn" additivity="false"> -->
+		<!-- <AppenderRef ref="stdout"/> -->
+		<!-- <AppenderRef ref="stderr"/> -->
+		<!-- </Logger> -->
+
+		<Root level="debug">
+			<AppenderRef ref="stdout" />
+			<AppenderRef ref="stderr" />
+			<AppenderRef ref="stdout_file" />
+			<AppenderRef ref="stderr_file" />
+		</Root>
+	</Loggers>
 </Configuration>

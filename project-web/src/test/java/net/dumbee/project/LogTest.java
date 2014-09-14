@@ -9,6 +9,7 @@ public class LogTest {
 	
 	@Test
 	public void test(){
+		log.entry();
 		log.trace("1、trace log");
 		log.debug("2、debug log");
 		log.info("3、info log");
