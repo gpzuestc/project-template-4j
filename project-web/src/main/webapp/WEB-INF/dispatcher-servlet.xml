@@ -7,13 +7,13 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        ">
-	<context:component-scan base-package="net.dumbee.project.**.controller" />
+	<context:component-scan base-package="net.dumbee.project.web.**.controller" />
 
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="false">
-			<ref bean="jsonConverter"/>
-			<ref bean="xmlConverter" />
-<!-- 			<ref bean="stringConverter" /> -->
+<!-- 			<ref bean="jsonConverter"/> -->
+<!-- 			<ref bean="xmlConverter" /> -->
+			<ref bean="stringConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
@@ -33,50 +33,48 @@
 		</property>
 	</bean>
 
-<!-- 	<bean -->
-<!-- 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> -->
-<!-- 		<property name="messageConverters"> -->
-<!-- 			<list> -->
-<!-- 				<ref bean="stringConverter" /> -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="stringConverter" />
 <!-- 				<ref bean="jsonConverter" /> -->
 <!-- 				<ref bean="xmlConverter" /> -->
-<!-- 			</list> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
-
-<!-- 	json support -->
-	<bean id="jsonConverter"
-		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>application/json;charset=UTF-8</value>
-			</list>
-		</property>
-
-<!-- 		自定义objectMapper, 过滤空字段 -->
-		<property name="objectMapper">
-			<bean class="net.dumbee.project.extend.ObjectMapperCustomer"></bean>
-		</property>
-	</bean>
-
-	<bean id="xmlConverter"
-		class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>application/xml;charset=UTF-8</value>
 			</list>
 		</property>
 	</bean>
 
-<!-- 	<bean id="stringConverter" -->
-<!-- 		class="org.springframework.http.converter.StringHttpMessageConverter"> -->
+<!-- 	<bean id="jsonConverter" -->
+<!-- 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"> -->
 <!-- 		<property name="supportedMediaTypes"> -->
 <!-- 			<list> -->
-<!-- 				<value>text/plain;charset=UTF-8</value> -->
 <!-- 				<value>application/json;charset=UTF-8</value> -->
 <!-- 			</list> -->
 <!-- 		</property> -->
-<!-- 		<property name="writeAcceptCharset" value="false"></property> -->
+<!-- 		<property name="objectMapper"> -->
+<!-- 			<bean class="net.dumbee.project.web.extend.ObjectMapperCustomer"></bean> -->
+<!-- 		</property> -->
 <!-- 	</bean> -->
+
+<!-- 	<bean id="xmlConverter" -->
+<!-- 		class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter"> -->
+<!-- 		<property name="supportedMediaTypes"> -->
+<!-- 			<list> -->
+<!-- 				<value>application/xml;charset=UTF-8</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
+	<bean id="stringConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/plain;charset=UTF-8</value>
+				<value>application/json;charset=UTF-8</value>
+				<value>application/xml;charset=UTF-8</value>
+			</list>
+		</property>
+		<property name="writeAcceptCharset" value="false"></property>
+	</bean>
 
 </beans>

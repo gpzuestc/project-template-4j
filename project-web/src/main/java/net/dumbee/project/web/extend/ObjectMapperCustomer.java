@@ -1,4 +1,4 @@
-package net.dumbee.project.extend;
+package net.dumbee.project.web.extend;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonParser.Feature;

@@ -1,4 +1,4 @@
-package net.dumbee.project.vo;
+package net.dumbee.project.web.vo;
 
 import java.io.Serializable;
 

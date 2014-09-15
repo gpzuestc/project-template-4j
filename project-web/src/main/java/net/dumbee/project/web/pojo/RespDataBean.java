@@ -1,8 +1,8 @@
-package net.dumbee.project.model;
+package net.dumbee.project.web.pojo;
 
 import java.io.Serializable;
 
-public class JsonView implements Serializable{
+public class RespDataBean implements Serializable{
 
 	/**
 	 * 

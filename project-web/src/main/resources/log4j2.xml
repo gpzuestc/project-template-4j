@@ -9,7 +9,7 @@
  	asynchronous loggers and asynchronous appenders do not include location information by default.
  	You can change this by setting includeLocation="true". -->
  	
-<Configuration status="debug">
+<Configuration status="info">
 	<Properties>
 		<Property name="logPattern">[%d{yyyy-MM-dd HH:mm:ss}] [%t] [%level] %logger.%M(%L) - %msg%n</Property>
 		<Property name="logFile.base">${sys:catalina.base}/logs</Property>
