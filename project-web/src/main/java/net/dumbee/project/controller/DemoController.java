@@ -44,6 +44,7 @@ public class DemoController {
 	@ResponseBody
 	public JsonView helloJson(
 			@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
+		log.info(System.getProperty("catalina.base"));
 		log.info("log: {}, {}", name, name); // LogManager.getLogger
 		log.info("log: %s : %s", name, name); // LogManager.getFormatterLogger
 		JsonView jsonView = new JsonView();
