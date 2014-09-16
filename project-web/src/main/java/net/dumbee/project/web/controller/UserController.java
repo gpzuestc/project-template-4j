@@ -2,11 +2,14 @@ package net.dumbee.project.web.controller;
 
 import net.dumbee.project.commons.result.RespDataView;
 import net.dumbee.project.web.service.UserService;
+import net.dumbee.project.web.vo.UserVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -22,9 +25,10 @@ public class UserController extends BaseController{
 		return response(userService.loadUser(uid));
 	}
 	
-	@RequestMapping("hi")
+	@RequestMapping("create")
 	@ResponseBody
-	public RespDataView test(){
-		return new RespDataView();
+	
+	public RespDataView create(@ModelAttribute UserVO userVO){
+		return response(userService.createUser(userVO));
 	}
 }

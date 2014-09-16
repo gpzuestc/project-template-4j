@@ -5,7 +5,7 @@ import net.dumbee.project.commons.result.Message;
 
 public class MessageWeb extends Message{
 	
-
+	protected static final Integer TYPE_SUCCESS = 200;
 	private static Integer TYPE_WARN = 50; //警告提示，一般值操作成功，但重新load或显示出错等错误
 	private static Integer TYPE_ERROR = 1000;
 	private static Integer TYPE_ERROR_UNDEFINED = 1001;
@@ -16,12 +16,19 @@ public class MessageWeb extends Message{
 	public static final MessageWeb 
 			ERROR = new MessageWeb(TYPE_ERROR, "error"),
 			USER_NOT_EXIST = new MessageWeb(TYPE_ERROR, "用户不存在"),
+			CREATE_USER_FAIL = new MessageWeb(TYPE_ERROR, "创建用户失败"),
 			
 			ERROR_UNDEFINED = new MessageWeb(TYPE_ERROR_UNDEFINED, "未知错误");
 	
 	
 	protected MessageWeb(Integer type, String desc) {
 		super(type, desc);
+	}
+
+
+	@Override
+	public boolean isSuccess() {
+		return TYPE_SUCCESS.equals(type);
 	}
 
 

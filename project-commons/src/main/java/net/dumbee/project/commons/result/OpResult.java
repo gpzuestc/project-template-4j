@@ -9,6 +9,8 @@ public class OpResult <T> implements Serializable {
 	 */
 	private static final long serialVersionUID = -3894781581772830912L;
 	
+	private static Message defaultSuccess = SuccessMessage.instance;
+	
 	private T data;
 	
 	private Message message;
@@ -22,7 +24,7 @@ public class OpResult <T> implements Serializable {
 	}
 	
 	public OpResult(Message message, T data){
-		this.message = message == null ? Message.SUCCESS : message;
+		this.message = message == null ? defaultSuccess : message;
 		this.data = data;
 	}
 	

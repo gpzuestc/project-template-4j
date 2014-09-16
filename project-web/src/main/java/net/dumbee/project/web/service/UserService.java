@@ -7,4 +7,5 @@ public interface UserService {
 	
 	OpResult<UserVO> loadUser(Long uid);
 	
+	OpResult<UserVO> createUser(UserVO userVO);
 }

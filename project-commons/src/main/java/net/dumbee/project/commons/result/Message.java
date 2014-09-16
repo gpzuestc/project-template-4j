@@ -1,9 +1,6 @@
 package net.dumbee.project.commons.result;
 
-public class Message {
-	
-	protected static final Integer TYPE_SUCCESS = 200;
-	protected static final Message SUCCESS = new Message(TYPE_SUCCESS, "OK");
+public abstract class Message {
 	
 	protected Integer type;
 	protected String desc;
@@ -12,17 +9,15 @@ public class Message {
 		this.type = type;
 		this.desc = desc;
 	}	
-
+	
+	public abstract boolean isSuccess();
+	
 	public Integer getType() {
 		return type;
 	}
 
 	public String getDesc() {
 		return desc;
-	}
-	
-	public boolean isSuccess(){
-		return TYPE_SUCCESS.equals(type);
 	}
 	
 }
