@@ -2,7 +2,7 @@ package net.dumbee.project.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.dumbee.project.web.pojo.RespDataBean;
+import net.dumbee.project.commons.result.RespDataView;
 import net.dumbee.project.web.vo.UserVO;
 
 import org.apache.logging.log4j.LogManager;
@@ -49,9 +49,9 @@ public class DemoController extends BaseController{
 	
 	@RequestMapping("/helloObj")
 	@ResponseBody
-	public RespDataBean helloObj(
+	public RespDataView helloObj(
 			@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
-		RespDataBean respDataBean = new RespDataBean();
+		RespDataView respDataBean = new RespDataView();
 		respDataBean.setStatusText("hello");
 		respDataBean.setStatusCode(200);
 		UserVO userVO = new UserVO();

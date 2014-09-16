@@ -1,6 +1,6 @@
-package net.dumbee.project.web.pojo;
+package net.dumbee.project.web.result;
 
-import net.dumbee.project.commons.pojo.Message;
+import net.dumbee.project.commons.result.Message;
 
 
 public class MessageWeb extends Message{
@@ -15,6 +15,7 @@ public class MessageWeb extends Message{
 	 */
 	public static final MessageWeb 
 			ERROR = new MessageWeb(TYPE_ERROR, "error"),
+			USER_NOT_EXIST = new MessageWeb(TYPE_ERROR, "用户不存在"),
 			
 			ERROR_UNDEFINED = new MessageWeb(TYPE_ERROR_UNDEFINED, "未知错误");
 	

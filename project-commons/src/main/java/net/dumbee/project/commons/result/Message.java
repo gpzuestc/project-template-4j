@@ -1,4 +1,4 @@
-package net.dumbee.project.commons.pojo;
+package net.dumbee.project.commons.result;
 
 public class Message {
 	

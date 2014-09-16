@@ -1,4 +1,4 @@
-package net.dumbee.project.commons.pojo;
+package net.dumbee.project.commons.result;
 
 import java.io.Serializable;
 
@@ -30,16 +30,18 @@ public class OpResult <T> implements Serializable {
 		return data;
 	}
 
-	public void setData(T data) {
+	public OpResult<T> setData(T data) {
 		this.data = data;
+		return this;
 	}
 
 	public Message getMessage() {
 		return message;
 	}
 
-	public void setMessage(Message message) {
+	public OpResult<T> setMessage(Message message) {
 		this.message = message;
+		return this;
 	}
 	
 	public boolean isSuccess(){

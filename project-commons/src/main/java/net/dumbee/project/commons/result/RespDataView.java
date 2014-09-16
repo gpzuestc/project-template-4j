@@ -1,8 +1,8 @@
-package net.dumbee.project.web.pojo;
+package net.dumbee.project.commons.result;
 
 import java.io.Serializable;
 
-public class RespDataBean implements Serializable{
+public class RespDataView implements Serializable{
 
 	/**
 	 * 
