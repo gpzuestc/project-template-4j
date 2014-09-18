@@ -62,7 +62,7 @@
 		<!-- <AppenderRef ref="stderr"/> -->
 		<!-- </Logger> -->
 
-		<Root level="info">
+		<Root level="debug">
 			<AppenderRef ref="stdout" />
 			<AppenderRef ref="stderr" />
 <!-- 			<AppenderRef ref="stdoutFile" /> -->
