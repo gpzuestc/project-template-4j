@@ -6,15 +6,11 @@ import org.junit.Test;
 
 public class UserDAOTest extends TestBase{
 	
-	UserDAO userDAO = context.getBean(UserDAO.class);
+	IUserDAO userDAO = context.getBean(IUserDAO.class);
 
 	@Test
 	public void testLoad(){
-		System.out.println(userDAO.load(1L).getName());
+		System.out.println(userDAO.get(1L).getName());
 	}
 	
-	@Test
-	public void testFindByName(){
-		System.out.println(userDAO.findByNameAndStartAndSize("sobject", 2, 3).get(1).getId());
-	}
 }

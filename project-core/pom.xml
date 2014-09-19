@@ -9,11 +9,22 @@
 	<artifactId>project-core</artifactId>
 
 	<dependencies>
+		<!-- <dependency> -->
+		<!-- <groupId>org.mybatis</groupId> -->
+		<!-- <artifactId>mybatis</artifactId> -->
+		<!-- <version>${mybatis.version}</version> -->
+		<!-- <scope>compile</scope> -->
+		<!-- </dependency> -->
+
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.hibernate</groupId> -->
+<!-- 			<artifactId>hibernate-core</artifactId> -->
+<!-- 			<version>${hibernate.version}</version> -->
+<!-- 		</dependency> -->
 		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>${mybatis.version}</version>
-			<scope>compile</scope>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
 		</dependency>
 	</dependencies>
 </project>

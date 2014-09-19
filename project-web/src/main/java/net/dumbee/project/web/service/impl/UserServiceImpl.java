@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import net.dumbee.project.commons.result.OpResult;
 import net.dumbee.project.core.entity.User;
-import net.dumbee.project.core.service.UserCoreService;
+import net.dumbee.project.core.service.IUserCoreService;
 import net.dumbee.project.web.result.MessageWeb;
 import net.dumbee.project.web.service.UserService;
 import net.dumbee.project.web.vo.UserVO;
@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 	private static final Logger log = LogManager.getLogger(UserServiceImpl.class);
 	
 	@Autowired
-	private UserCoreService userCoreService;
+	private IUserCoreService userCoreService;
 	
 	@Override
 	public OpResult<UserVO> loadUser(Long uid) {
@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setName(userVO.getUsername());
 		try {
-			int r = userCoreService.saveUser(user);
-			if(r == 1){
+			Long r = userCoreService.saveUser(user);
+			if(r != null && r >= 1){
 				userVO.setUid(user.getId());
 				opResult.setData(userVO);
 			}

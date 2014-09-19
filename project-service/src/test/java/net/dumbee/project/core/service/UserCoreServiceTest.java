@@ -9,7 +9,7 @@ public class UserCoreServiceTest extends TestBase{
 	
 	@Test
 	public void testSaveUser() throws Exception{
-		UserCoreService userCoreService  = context.getBean(UserCoreService.class);
+		IUserCoreService userCoreService  = context.getBean(IUserCoreService.class);
 		User user = new User();
 		user.setName("sobject");
 		System.out.println(userCoreService.saveUser(user));
