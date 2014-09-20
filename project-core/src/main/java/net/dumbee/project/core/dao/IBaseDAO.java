@@ -18,5 +18,18 @@ public interface IBaseDAO <T, ID extends Serializable> {
 	
 	List<T> findByExample(T entity);
 	
-	List<T> findByExample(T entity, int firstResult, int maxResult);
+	List<T> findByExample(T entity, boolean desc);
+
+	List<T> findByExample(T entity, boolean desc, String orderProperty);
+	
+	List<T> findByExample(T entity, int firstResult, int maxResults);
+	
+	List<T> findByExample(T entity, int firstResult, int maxResults, boolean desc);
+	
+	List<T> findByExample(T entity, int firstResult, int maxResults, boolean desc, String orderProperty);
+	
+	Long count();
+	
+	Long countByExample(T entity);
+	
 }
